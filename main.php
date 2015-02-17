@@ -1,69 +1,93 @@
-<!DOCTYPE html>
 <html>
-<body>
-
-<h1>Example Heading</h1>
-<p>Example below.</p>
-
-
-<SELECT NAME="TrackList" style="width:400px" MULTIPLE>
-<OPTION> Track 1
-<OPTION> Track 2
-<OPTION> Track 3
-<OPTION> Track 4
-<OPTION> Track 5
-</SELECT>
-
-
-<p>
-<p>
-
-<SELECT NAME="test" style="width:400px" size="6" MULTIPLE>
+        
 <?php
-if ($open = opendir('./audio')) {
-    #while (false !== ($file = readdir($open))) {
-    while ($file = readdir($open)) {
-    	if ($file !== ".." && $file !== "."){
-            echo "<OPTION value=$file>$file</OPTION>";
-              }
-           }
-    closedir($open);
-}
+$connect = mysql_connect('127.0.0.1', 'root', '');
+mysql_select_db("RT");
+$query = "SELECT * FROM tracks";
+$result = mysql_query ($query);
+						echo "<form id='trackList'>";
+                        echo "<select size=3 onclick=audioHandler()>";
+
+                        while($output=mysql_fetch_assoc($result)){
+                        echo "<option id=$output[Id] value=$output[Id]>$output[Id] $output[Title] $output[Artist] $output[FileName]</option>";
+                        
+                        }
+                        
+                        echo "</select>";
+                        echo "</form>";
+
+                                        
+mysql_free_result($result);
 ?>
-</SELECT>
-
-<p>
-<p>
-<p>
-
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
-
-<p>
-<p>
-<p>
 
 
-<audio id="myAudio"
- <source src="./audio/1.mp3"
-         type='audio/mp3'>
- Your browser is not supported.
-</audio>
-<button type="button" onclick="aud_play_pause()">Play/Pause</button>
-<script>
-function aud_play_pause() {
-  var myAudio = document.getElementById("myAudio");
-  if (myAudio.paused) {
-    myAudio.play();
-  } else {
-    myAudio.pause();
-  }
+
+
+<script type="text/javascript">
+
+var audio = new Audio;
+
+
+function audioHandler() {
+var trackSelect = document.getElementById('trackList');
+	audio.pause();
+	alert(trackSelect);
+
+<?php
+$num=1;
+$num1=$_GET['trackSelect'];
+$connect = mysql_connect('127.0.0.1', 'root', '');
+mysql_select_db("RT");
+$query = "SELECT FileName FROM tracks where Id=$num";
+$result = mysql_query($query);
+$output=mysql_fetch_assoc($result);
+mysql_free_result($result);
+?>
+
+	audio.setAttribute("src", '<?php echo "./audio/" . $output[FileName]; ?>');
+	audio.load();
+	audio.play();
+
+	
 }
+
+function pauseAudio() {
+    audio.pause();
+
+}
+
+function playAudio(){
+    audio.play();
+
+}
+
+function nextAudio(){
+	audio.pause();
+	$connect = mysql_connect('127.0.0.1', 'root', '');
+	mysql_select_db("RT");
+	$query = "SELECT FileName FROM tracks where Id=$num";
+	$result = mysql_query($query);
+	$output=mysql_fetch_assoc($result);
+	audio.setAttribute("src", '<?php echo "./audio/" . $output[FileName]; ?>');
+	audio.load();
+	audio.play();
+}
+
+
+
+
+
 </script>
 
+<input type="button" onclick="pauseAudio()" value="Pause">
+<input type="button" onclick="playAudio()" value="Play">
+<input type="button" onclick="nextAudio()" value="Next">
 
-</body>
-</html> 
+
+
+
+
+
+</html>
+
+
