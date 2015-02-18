@@ -1,5 +1,6 @@
 <html>
-        
+<head>
+ 
 <?php
 $connect = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db("RT");
@@ -29,13 +30,9 @@ var audio = new Audio;
 
 
 function audioHandler() {
-var trackSelect = document.getElementById('trackList');
-	audio.pause();
-	alert(trackSelect);
 
 <?php
 $num=1;
-$num1=$_GET['trackSelect'];
 $connect = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db("RT");
 $query = "SELECT FileName FROM tracks where Id=$num";
@@ -53,26 +50,29 @@ mysql_free_result($result);
 
 function pauseAudio() {
     audio.pause();
-
 }
 
 function playAudio(){
     audio.play();
-
 }
 
 function nextAudio(){
 	audio.pause();
+	
+	<?php
+	$num=$num+1;
 	$connect = mysql_connect('127.0.0.1', 'root', '');
 	mysql_select_db("RT");
 	$query = "SELECT FileName FROM tracks where Id=$num";
 	$result = mysql_query($query);
 	$output=mysql_fetch_assoc($result);
+	mysql_free_result($result);
+	?>
+	
 	audio.setAttribute("src", '<?php echo "./audio/" . $output[FileName]; ?>');
 	audio.load();
 	audio.play();
 }
-
 
 
 
@@ -87,7 +87,6 @@ function nextAudio(){
 
 
 
-
-</html>
+</body></html>
 
 
