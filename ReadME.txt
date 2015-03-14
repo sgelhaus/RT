@@ -15,5 +15,9 @@ Update with git pull
 2. mysql -u 'username' -p'password' RT < RT.sql;
 Your step 2 is likely to be: mysql -u root RT < RT.sql;
 
+Command for downloading mysqldb needed for python server:
+sudo apt-get install python-mysqldb
+
+
 Created By:
 RazzTuens Team.
