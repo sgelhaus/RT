@@ -6,18 +6,24 @@ $connect = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db("RT");
 $query = "SELECT * FROM tracks";
 $result = mysql_query ($query);
-						echo "<form id='trackList'>";
-                        echo "<select size=3 onclick=audioHandler()>";
+?>
+						<form id='trackList'>
+                        <select size=3>
+                        <?php
                         while($output=mysql_fetch_assoc($result)){
-                        echo "<option id=$output[Id] value=$output[Id]>$output[Id] $output[Title] $output[Artist] $output[FileName]</option>";
-                        
+                        ?>
+                        <option id=<?php echo $output[Id]; ?> value=<?php echo $output[Id]; ?> onclick=audioHandler()><?php echo $output[Id]; ?> <?php echo $output[Title]; ?> <?php echo $output[Artist]; ?> <?php echo $output[FileName]; ?></option>
+
+						<?php
                         }
-                        
-                        echo "</select>";
-                        echo "</form>";
-                                        
+                        ?>
+                        </select>
+                        </form>
+<?php                                        
 mysql_free_result($result);
 ?>
+
+
 
 
 
@@ -25,16 +31,20 @@ mysql_free_result($result);
 <script type="text/javascript">
 var audio = new Audio;
 function audioHandler() {
+var ID = document.getElementById('<?php echo $output[Id]; ?>').value 
+alert(ID)
+
+
 <?php
-$num=1;
+$num=$output[Id];
 $connect = mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db("RT");
-$query = "SELECT FileName FROM tracks where Id=$num";
-$result = mysql_query($query);
-$output=mysql_fetch_assoc($result);
-mysql_free_result($result);
+$query1 = "SELECT FileName FROM tracks where Id=$num";
+$result1 = mysql_query($query1);
+$output1=mysql_fetch_assoc($result1);
+mysql_free_result($result1);
 ?>
-	audio.setAttribute("src", '<?php echo "./audio/" . $output[FileName]; ?>');
+	audio.setAttribute("src", '<?php echo "./audio/" . $output1[FileName]; ?>');
 	audio.load();
 	audio.play();
 	
@@ -72,7 +82,7 @@ function nextAudio(){
 
 
 
-<form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
+<form enctype="multipart/form-data" action="upload.php" method="POST">
 <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
 Choose a file to upload: <input name="uploadedfile" type="file" /><br />
 <input type="submit" value="Upload File" />
@@ -81,17 +91,4 @@ Choose a file to upload: <input name="uploadedfile" type="file" /><br />
 
 
 
-<?php
-$target_path = "./audio/";
-$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
-if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-    echo "The file ".  basename( $_FILES['uploadedfile']['name'])." has been uploaded";
-} 
-else{
-    echo "There was an error uploading the file, please try again!";
-}
-?>
-
-
 </body></html>
-
