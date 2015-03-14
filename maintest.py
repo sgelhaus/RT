@@ -4,12 +4,12 @@ import MySQLdb
 
 db = MySQLdb.connect(host="localhost", 
                      user="root",
-                      passwd="", 
+                      passwd="3308", 
                       db="RT")
 cur = db.cursor() 
 cur.execute("SELECT * FROM tracks")
 
-#db.close()
+
 
 print "Content-type: text/html"
 
@@ -18,6 +18,7 @@ contents1='''
 <html>
 <body>
 	<center>
+	<img src = "/spaceBubbles.jpg"> 
 	<form id='trackList'>
     <select size=3>
     '''    
@@ -47,20 +48,8 @@ javascript_play_1='''
 var audio = new Audio;
 function audioHandler() {
 '''
-db = MySQLdb.connect(host="localhost",
-                     user="root",
-                      passwd="",
-                      db="RT")
-cur = db.cursor() 
-cur.execute("SELECT * FROM tracks where Id=%d")%(1)
+print javascript_play_1
 
-javascript_play_2='''
-	audio.setAttribute("src", '<?php echo "./audio/" . $output1[FileName]; ?>');
-	audio.load();
-	audio.play();
-'''
-
-print javascript1
 
 javascript2='''
 }</script>
@@ -83,3 +72,5 @@ html_end='''
 </html>
 '''
 print html_end
+
+db.close()
