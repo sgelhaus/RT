@@ -1,76 +1,121 @@
 #!/usr/bin/python
 
 import MySQLdb
+import os
 
 db = MySQLdb.connect(host="localhost", 
                      user="root",
-                      passwd="3308", 
+                      passwd="", 
                       db="RT")
 cur = db.cursor() 
 cur.execute("SELECT * FROM tracks")
 
 
-
-print "Content-type: text/html"
-
-contents1='''
-
+print'''
 <html>
 <body>
 	<center>
-	<img src = "/spaceBubbles.jpg"> 
-	<form id='trackList'>
-    <select size=3>
+    <select size=3 id="selectBox" onchange="audioChooser();">
     '''    
-print contents1
-
+    
 for row in cur.fetchall() :
 	
-	contents2='''
-    <option onclick=audioHandler()>
-    '''
-	print contents2
+	print"""<option value='""",row[5],"""'>"""
+	
 
-	print row[0], row[1], row[2], row[3], row[4], row[5]
+	print row[0],row[1],row[2],row[3],row[4],row[5]
 
-contents3='''
-			<br>
+print'''
+	<br>
     </select>
-    </form>
     </center>
 
 '''
-print contents3
 
 
-javascript_play_1='''
+print'''
 <script type="text/javascript">
 var audio = new Audio;
-function audioHandler() {
+
+
+function audioChooser() {
 '''
-print javascript_play_1
 
 
-javascript2='''
-}</script>
+print'''
+var selectBox = document.getElementById("selectBox");
+var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+var selectedValueSliced = selectedValue.slice(1);
+
+
+var path = "../audio/"+selectedValueSliced;
+
+audio.setAttribute("src", path);
+audio.load();
+audio.play();
+}
+
+function playAudio(){
+if(!audio.paused){
+    audio.pause();
+    }
+else{
+    audio.play();
+    }
+	}
+
+function pauseAudio(){
+    audio.pause();
+	}
+
+function nextAudio(){
+	}
+
+function loopAudio(){
+	if(audio.loop){
+	audio.loop=false;
+	}
+	else{
+	audio.loop=true;
+	}
+}
+
+</script>
 '''
-print javascript2
 
-buttons='''
-<center>
+
+
+
+
+
+print'''
 <br>
-<input type="button" onclick="pauseAudio()" value="Pause">
-<input type="button" onclick="playAudio()" value="Play">
+<center>
+<input type="image" src="../images/play.jpg" onclick="playAudio()" value="Play">
+<input type="image" src="../images/pause.png"onclick="pauseAudio()" width="80" height="80" value="Pause">
 <input type="button" onclick="nextAudio()" value="Next">
+
+<br>
+<input type="checkbox" onclick="loopAudio()" value="Loop"> Loop track
 </center>
 '''
-print buttons
+
+print'''
+<form enctype="multipart/form-data" action="upload.py" method="post">
+<p>File: <input type="file" name="file"></p>
+<p><input type="submit" value="Upload"></p>
+</form>
+'''
 
 
-html_end='''
+
+
+print'''
 </body>
 </html>
 '''
-print html_end
+
+#os.system('zenity --info --text=count')
+
 
 db.close()
