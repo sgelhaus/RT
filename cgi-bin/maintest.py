@@ -7,7 +7,7 @@ import cgitb; cgitb.enable()
 
 db = MySQLdb.connect(host="localhost", 
                      user="root",
-                      passwd="", 
+                      passwd="3308", 
                       db="RT")
 cur = db.cursor() 
 cur.execute("SELECT * FROM tracks")
@@ -131,7 +131,7 @@ print'''
 <!-- <input type="button" onclick="nextAudio()" value="Next"> -->
 
 <br>
-<input type="checkbox" onclick="loopAudio()" value="Loop"> Loop track
+<input type="checkbox" onclick="loopAudio()" value="Loop"> Repeat
 </center>
 
 '''
