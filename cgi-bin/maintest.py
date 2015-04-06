@@ -56,19 +56,10 @@ print'''
 	<br>
     </select>
 	</center>
-'''
 
-
-print'''
 <script type="text/javascript">
 var audio = new Audio;
-
-
 function audioChooser() {
-'''
-
-
-print'''
 	var selectBox = document.getElementById("selectBox");
 	var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 	var selectedValueSliced = selectedValue.slice(1);
@@ -80,11 +71,9 @@ print'''
 	audio.load();
 	audio.play();
 }
-
 function playAudio(){
     audio.play();
 	}
-
 function pauseAudio(){
     audio.pause();
 	}
@@ -92,18 +81,6 @@ function stopAudio(){
 	audio.pause();
 	audio.load();
 }
-
-<!-- 
-function nextAudio(){
-	var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-	var selectedValueSliced = selectedValue.slice(1);
-	var path = "../audio/"+selectedValueSliced;
-	audio.setAttribute("src", path);
-	audio.load();
-	audio.play();
-	} 
--->
-
 function loopAudio(){
 	if(audio.loop){
 	audio.loop=false;
@@ -112,42 +89,24 @@ function loopAudio(){
 	audio.loop=true;
 	}
 }
-
 </script>
-'''
 
-
-
-
-
-
-print'''
 <br>
 <center>
 <input type="image" src="../images/play.png" onclick="playAudio()" value="Play">
 <input type="image" src="../images/pause.png" onclick="pauseAudio()" value="Pause">
 <input type="image" src="../images/stop.png" onclick="stopAudio()" value="Stop">
-
-<!-- <input type="button" onclick="nextAudio()" value="Next"> -->
-
 <br>
 <input type="checkbox" onclick="loopAudio()" value="Loop"> Repeat
 </center>
 
-'''
-
-
-
-print'''
 </body>
-
 <footer>
 
 <form enctype="multipart/form-data" action="fileUpload.py" method="post">
 <input type="file" name="file">
 <button type="submit" style="background:transparent; border:none; color:transparent;"><img src="../images/upload.png"/></button>
 </form>
-
 
 <p style="position: absolute; bottom: 0; width: 100%; text-align: center;">
 <a href="https://github.com/stge0958/RT">
@@ -158,5 +117,4 @@ print'''
 </footer>
 </html>
 '''
-
 db.close()
