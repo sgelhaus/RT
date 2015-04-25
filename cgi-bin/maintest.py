@@ -20,16 +20,26 @@ print'''
 <title>Project RazzTunes</title>
 <style type="text/css">
  html{ 
-  background: url(../images/bg.jpg) no-repeat center center fixed;  //Photo License: Creative Commons, www.flickr.com/photos/hexidecimal/6673189339
+  background: url(../images/bg.jpg) no-repeat center center fixed;  <!-- Photo License: Creative Commons, https://www.flickr.com/photos/elpatojo/216014671/ -->
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: "Arial", sans-serif;	
+
+}
+img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); 
+}
+
+img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); 
 }
  div.playlistFormat {
-	  color: red;
-	  opacity: 0.4;
-	  font-size: 2em;
+	  opacity: 0.5;
+	  filter: alpha(opacity=50); 
   }
  footer {
    position:absolute;
@@ -37,6 +47,9 @@ print'''
 }
 
 </style>
+
+<link rel="shortcut icon" href="/images/play.png" />
+
 </head>
 <body>
 	<center>
@@ -94,9 +107,9 @@ function loopAudio(){
 
 <br>
 <center>
-<input type="image" src="../images/play.png" onclick="playAudio()" value="Play">
-<input type="image" src="../images/pause.png" onclick="pauseAudio()" value="Pause">
-<input type="image" src="../images/stop.png" onclick="stopAudio()" value="Stop">
+<img src="../images/play.png" onclick="playAudio()" value="Play">
+<img src="../images/pause.png" onclick="pauseAudio()" value="Pause">
+<img src="../images/stop.png" onclick="stopAudio()" value="Stop">
 <br>
 <input type="checkbox" onclick="loopAudio()" value="Loop"> Repeat
 </center>
