@@ -13,6 +13,7 @@ cur = db.cursor()
 cur.execute("SELECT * FROM tracks")
 
 
+
 print'''
 <html>
 <head>
@@ -20,19 +21,18 @@ print'''
 <style type="text/css">
  html{ 
   background: url(../images/bg.jpg) no-repeat center center fixed;  //Photo License: Creative Commons, www.flickr.com/photos/hexidecimal/6673189339
- // -webkit-background-size: cover;
- // -moz-background-size: cover;
- // -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
- .playlistFormat {
+ div.playlistFormat {
 	  color: red;
+	  opacity: 0.4;
 	  font-size: 2em;
   }
  footer {
    position:absolute;
-   bottom:0;
-   width:100%;
    height:50px;
 }
 
@@ -41,18 +41,19 @@ print'''
 <body>
 	<center>
 	<h1>Project RazzTunes</h1>
-	
+	<div class="playlistFormat">
     <select size=9 id="selectBox" onchange="audioChooser();">
     '''    
     
 for row in cur.fetchall() :
 	
-	print"""<option class="playlistFormat" value='""",row[5],"""'>"""
+	print"""<option value='""",row[5],"""'>"""
 	
 
 	print row[1],row[2],row[3],row[4],row[5]
 
 print'''
+	</div>
 	<br>
     </select>
 	</center>
@@ -100,9 +101,7 @@ function loopAudio(){
 <input type="checkbox" onclick="loopAudio()" value="Loop"> Repeat
 </center>
 
-</body>
-<footer>
-
+<center>
 <form enctype="multipart/form-data" action="fileUpload.py" method="post">
 <input type="file" name="file">
 <button type="submit" style="background:transparent; border:none; color:transparent;"><img src="../images/upload.png"/></button>
@@ -112,7 +111,12 @@ function loopAudio(){
 <a href="https://github.com/stge0958/RT">
 <img src="../images/info.png">
 </a>
-</p>
+</p></center>
+
+</body>
+<footer>
+
+
 
 </footer>
 </html>

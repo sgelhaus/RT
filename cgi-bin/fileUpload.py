@@ -2,6 +2,7 @@
 import MySQLdb
 import cgi, os
 import cgitb; cgitb.enable()
+import id3reader
 
 try: # Windows needs this
     import msvcrt
@@ -21,10 +22,11 @@ if fileitem.filename:
 	
 	db = MySQLdb.connect(host="localhost", 
                      user="root",
-                      passwd="", 
+                      passwd="3308", 
                       db="RT")
 	cur = db.cursor() 
-	cur.execute("INSERT INTO tracks (Title, Artist, Album, Genre, FileName) VALUES ('Song Title1','Song Artist1','Song Album1','Song Genre1','" + fn + "');")
+	id3r = id3reader.Reader('./audio/' + fn)
+	cur.execute("INSERT INTO tracks (Title, Artist, Album, Genre, FileName) VALUES ('" + id3r.getValue('title') + "','" + id3r.getValue('performer') + "','" + id3r.getValue('album') + "','" + id3r.getValue('album') + "','" + fn + "');")
 	db.close()
 	
 	message = 'The file was uploaded successfully.'
@@ -50,5 +52,6 @@ Content-Type: text/html\n
 <a href="/cgi-bin/maintest.py">Return</a></center>
 </body></html>
 """ % (message,)
+
 
 
