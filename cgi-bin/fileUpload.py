@@ -25,8 +25,8 @@ if fileitem.filename:
                       passwd="3308", 
                       db="RT")
 	cur = db.cursor() 
-	id3r = id3reader.Reader('./audio/' + fn)
-	cur.execute("INSERT INTO tracks (Title, Artist, Album, Genre, FileName) VALUES ('" + id3r.getValue('title') + "','" + id3r.getValue('performer') + "','" + id3r.getValue('album') + "','" + id3r.getValue('album') + "','" + fn + "');")
+	id3 = id3reader.Reader('./audio/' + fn)
+	cur.execute("INSERT INTO tracks (Title, Artist, Album, Genre, FileName) VALUES ('" + id3.getValue('title') + "','" + id3.getValue('performer') + "','" + id3.getValue('album') + "','" + id3.getValue('album') + "','" + fn + "');")
 	db.close()
 	
 	message = 'The file was uploaded successfully.'
@@ -36,14 +36,17 @@ else:
    
 print """\
 Content-Type: text/html\n
-<html><head>
+<html>
+<head>
 <style type="text/css">
- html{ 
+
+html{ 
   background: url(../images/bg.jpg) no-repeat center center fixed;  //Photo License: Creative Commons, www.flickr.com/photos/hexidecimal/6673189339
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
-}
+    }
+     
 </style>
 </head>
 <body>

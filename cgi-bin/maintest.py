@@ -27,24 +27,26 @@ print'''
   background-size: cover;
   font-family: "Arial", sans-serif;	
 
-}
-img {
+    }
+    
+img{
     opacity: 0.5;
     filter: alpha(opacity=50); 
-}
+   }
 
-img:hover {
+img:hover{
     opacity: 1.0;
     filter: alpha(opacity=100); 
-}
- div.playlistFormat {
+         }
+         
+div.playlistFormat{
 	  opacity: 0.5;
 	  filter: alpha(opacity=50); 
-  }
- footer {
+                  }
+footer{
    position:absolute;
    height:50px;
-}
+      }
 
 </style>
 
@@ -73,7 +75,7 @@ print'''
 
 <script type="text/javascript">
 var audio = new Audio;
-function audioChooser() {
+function audioChooser(){
 	var selectBox = document.getElementById("selectBox");
 	var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 	var selectedValueSliced = selectedValue.slice(1);
@@ -84,24 +86,28 @@ function audioChooser() {
 	audio.setAttribute("src", path);
 	audio.load();
 	audio.play();
-}
+                       }   
 function playAudio(){
     audio.play();
-	}
+	                }
+	                
 function pauseAudio(){
     audio.pause();
-	}
+	                 }
+	                 
 function stopAudio(){
 	audio.pause();
 	audio.load();
-}
+                    }
+                    
 function loopAudio(){
 	if(audio.loop){
 	audio.loop=false;
-	}
+	               }
+	               
 	else{
 	audio.loop=true;
-	}
+	    }
 }
 </script>
 
