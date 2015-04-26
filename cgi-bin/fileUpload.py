@@ -26,7 +26,7 @@ if fileitem.filename:
                       db="RT")
 	cur = db.cursor() 
 	id3 = id3reader.Reader('./audio/' + fn)
-	cur.execute("INSERT INTO tracks (Title, Artist, Album, Genre, FileName) VALUES ('" + id3.getValue('title') + "','" + id3.getValue('performer') + "','" + id3.getValue('album') + "','" + id3.getValue('album') + "','" + fn + "');")
+	cur.execute("INSERT INTO tracks (Title, Artist, Album, FileName) VALUES ('" + id3.getValue('title') + "','" + id3.getValue('performer') + "','" + id3.getValue('album') + "','" + fn + "');")
 	db.close()
 	
 	message = 'The file was uploaded successfully.'

@@ -62,10 +62,10 @@ footer{
     
 for row in cur.fetchall() :
 	
-	print"""<option value='""",row[5],"""'>"""
+	print"""<option value='""",row[4],"""'>"""
 	
 
-	print row[1],row[2],row[3],row[4],row[5]
+	print row[1],row[2],row[3],row[4]
 
 print'''
 	</div>
