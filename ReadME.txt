@@ -18,6 +18,10 @@ Your step 2 is likely to be: mysql -u root RT < RT.sql;
 Command for downloading mysqldb needed for python server:
 sudo apt-get install python-mysqldb
 
+Auto-Doc Source files can be found: RT/Project Information/RazzTunes_Part_7/Source/ 
+Location of Doxygen Auto-doc: RT/Project Information/RazzTunes_Part_7/latex/refman.pdf
+
+
 
 Created By:
 Razz Tunes Team.
