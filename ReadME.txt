@@ -14,6 +14,11 @@ Update with git pull
 1. mysql create database RT;
 2. mysql -u 'user name' -p'password' RT < RT.sql;
 Your step 2 is likely to be: mysql -u root RT < RT.sql;
+Launch python server
+change directory to the cloned repository called 'RT'
+3. python -m CGIHTTPServer
+Open web browser and visit: 127.0.0.1:8000/cgi-bin/maintest.py
+
 
 Command for downloading mysqldb needed for python server:
 sudo apt-get install python-mysqldb
