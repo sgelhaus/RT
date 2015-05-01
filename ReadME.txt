@@ -1,7 +1,4 @@
 Welcome to Razz Tunes! 
-
-Your music player in the cloud. 
-
 Vision Statement:
 We want our users to listen to THEIR music anywhere they have Internet access.
 
@@ -27,8 +24,3 @@ Launch python server
 
 Auto-Doc Source files can be found: RT/Project Information/RazzTunes_Part_7/Source/ 
 Location of Doxygen Auto-doc: RT/Project Information/RazzTunes_Part_7/latex/refman.pdf
-
-
-
-Created By:
-RazzTunes Team
