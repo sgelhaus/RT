@@ -9,19 +9,21 @@ We want our users to listen to THEIR music anywhere they have Internet access.
 *Play the song you want by clicking our using the "Next" Button.
 *Enjoy! 
 
-Instructions for cloning the database:
-Update with git pull
-1. mysql create database RT;
-2. mysql -u 'user name' -p'password' RT < RT.sql;
-Your step 2 is likely to be: mysql -u root RT < RT.sql;
+Instructions for running RazzTunes:
+1. sudo apt-get install python-mysqldb
+
+clone the repository using:
+2. git clone https://github.com/stge0958/RT.git
+3. change directory to the cloned repository called 'RT'
+
+4. mysql create database RT;
+5. mysql -u root RT < RT.sql;
+
 Launch python server
-change directory to the cloned repository called 'RT'
-3. python -m CGIHTTPServer
-Open web browser and visit: 127.0.0.1:8000/cgi-bin/maintest.py
+6. python -m CGIHTTPServer
+7. Open web browser and visit: 127.0.0.1:8000/cgi-bin/maintest.py
 
 
-Command for downloading mysqldb needed for python server:
-sudo apt-get install python-mysqldb
 
 Auto-Doc Source files can be found: RT/Project Information/RazzTunes_Part_7/Source/ 
 Location of Doxygen Auto-doc: RT/Project Information/RazzTunes_Part_7/latex/refman.pdf
@@ -29,4 +31,4 @@ Location of Doxygen Auto-doc: RT/Project Information/RazzTunes_Part_7/latex/refm
 
 
 Created By:
-Razz Tunes Team.
+RazzTunes Team
