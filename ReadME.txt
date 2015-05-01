@@ -7,12 +7,14 @@ We want our users to listen to THEIR music anywhere they have Internet access.
 *Enjoy! 
 
 Instructions for running RazzTunes:
+Gather required packages
 1. sudo apt-get install python-mysqldb
 
-clone the repository using:
+Clone the repository using:
 2. git clone https://github.com/stge0958/RT.git
 3. change directory to the cloned repository called 'RT'
 
+Import the database included in the repository
 4. mysql create database RT;
 5. mysql -u root RT < RT.sql;
 
