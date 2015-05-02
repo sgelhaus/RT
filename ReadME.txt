@@ -16,7 +16,8 @@ Clone the repository using:
 
 Import the database included in the repository
 4. mysql create database RT;
-5. mysql -u root -p 3308 RT < RT.sql;
+5. mysql -u root -p RT < RT.sql;
+Enter Password: 3308
 
 Launch python server
 6. python -m CGIHTTPServer
